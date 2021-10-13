@@ -38,14 +38,14 @@ const Login = ({navigation}) => {
                 /> 
                   
             <Pressable style={styles.button} onPress={() => {_onPressButton() }}>
-                    <Text style={styles.text}>LOGIN</Text>
+                    <Text style={styles.text}>Validate</Text>
                 </Pressable>
                 <Text>{getErrorMessages()}</Text>
                 <Pressable style={styles.button} onPress={() => navigation.navigate('signin')}>
                     <Text style={styles.text}>SIGNUP</Text>
                 </Pressable>
-                <Pressable style={styles.button} onPress={() => navigation.navigate('profile')}>
-                    <Text style={styles.text}>VIEW PROFILE</Text>
+                <Pressable style={styles.button} onPress={() => navigation.navigate('bottomtabs')}>
+                    <Text style={styles.text}>Login</Text>
                 </Pressable>  
 
                 

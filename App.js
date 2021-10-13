@@ -11,8 +11,9 @@
  import { NavigationContainer } from '@react-navigation/native';
  import { createNativeStackNavigator } from '@react-navigation/native-stack';
  import Login from './screens/login'
-   import Signin from './screens/signin'
- import Profile from './screens/profile'
+ import Signin from './screens/signin'
+ import bottomtabs from './screens/navigation/bottomtabs'
+ import MovieDetails from './screens/MovieDetails';
  
  const Stack = createNativeStackNavigator();
  
@@ -26,7 +27,9 @@
          </Stack.Screen>
          <Stack.Screen name='signin' component={Signin}>
          </Stack.Screen>
-            <Stack.Screen name='profile' component={Profile}>
+            <Stack.Screen name='bottomtabs' component={bottomtabs}>
+         </Stack.Screen> 
+            <Stack.Screen name='MovieDetails' component={MovieDetails}>
          </Stack.Screen> 
        </Stack.Navigator>
      </NavigationContainer> 

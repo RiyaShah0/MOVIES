@@ -5,7 +5,7 @@ import { useValidation } from 'react-native-form-validator';
 import DatePicker from 'react-native-datepicker';
 
 
-const Profile = ({navigation}) => {
+const profile = ({navigation}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [number, setNumber] = useState('');
@@ -130,4 +130,4 @@ const styles = StyleSheet.create({
       },
       
 });
-export default Profile;
+export default profile;
