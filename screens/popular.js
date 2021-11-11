@@ -43,7 +43,8 @@ export default upcoming = ({navigation}) => {
                     uri:'https://image.tmdb.org/t/p/original/'+item.poster_path,
                 }}
               /> 
-             <Text> {item.title} , {item.release_date}</Text>
+              <Text> </Text>
+             <Text style={styles.text}> {item.title} , {item.release_date}</Text>
             </View>
             </TouchableOpacity>
           )}
@@ -54,7 +55,11 @@ export default upcoming = ({navigation}) => {
 };
 const styles = StyleSheet.create ({
   container: {
-    paddingTop: 5,
+    flex: 1,
+    paddingTop: 50 ,
+    backgroundColor: '#212121',
+    justifyContent:'flex-start',
+    paddingHorizontal: 20,
   },
   text:{
     color:"white",

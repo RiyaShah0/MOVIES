@@ -10,6 +10,7 @@ export default upcoming = ({navigation}) => {
       const response = await fetch('https://api.themoviedb.org/3/movie/upcoming?api_key=d90825d47218a3cfcae9c7f12291df14');
       const json = await response.json();
       setData(json.results);
+      console.log(json.results);
     } catch (error) {
       console.error(error);
     } finally {
@@ -34,6 +35,7 @@ export default upcoming = ({navigation}) => {
                 paramDate: item.release_date,
                 paramView: item.overview,
                 paramImage: item.poster_path,
+
               })
               }>
             <View style={styles.container}>
@@ -43,7 +45,8 @@ export default upcoming = ({navigation}) => {
                     uri:'https://image.tmdb.org/t/p/original/'+item.poster_path,
                 }}
               /> 
-             <Text> {item.title} , {item.release_date}</Text>
+              <Text> </Text>
+             <Text style={styles.text}> {item.title} , {item.release_date}</Text>
             </View>
             </TouchableOpacity>
           )}
@@ -54,7 +57,11 @@ export default upcoming = ({navigation}) => {
 };
 const styles = StyleSheet.create ({
   container: {
-    paddingTop: 5,
+    flex: 1,
+    paddingTop: 70 ,
+    backgroundColor: '#212121',
+    justifyContent:'flex-start',
+    paddingHorizontal: 20,
   },
   text:{
     color:"white",

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "668826097651",
+    "project_id": "learningperiod-23147",
+    "storage_bucket": "learningperiod-23147.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668826097651:android:3a6a5d5c9bdf3c3f2c2486",
+        "android_client_info": {
+          "package_name": "com.learningperiod"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668826097651-qvf3ncgb17sdigjum949ojardbjmn54e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCn7Lz59viwY-b_Kwq4nXI-wqqUUNfi3qU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668826097651-qvf3ncgb17sdigjum949ojardbjmn54e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

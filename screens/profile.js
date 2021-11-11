@@ -1,8 +1,9 @@
 'use strict';
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { View, Text, TextInput ,StyleSheet,Pressable } from 'react-native';
 import { useValidation } from 'react-native-form-validator';
 import DatePicker from 'react-native-datepicker';
+ import { AuthContext } from '../navigation/AuthProvider';
 
 
 const profile = ({navigation}) => {
@@ -10,6 +11,7 @@ const profile = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [number, setNumber] = useState('');
   const [date, setDate] = useState('');
+  const {logout} = useContext(AuthContext);
  
   const { validate, isFieldInError, getErrorsInField, getErrorMessages } =
     useValidation({
@@ -78,6 +80,9 @@ const profile = ({navigation}) => {
             <Pressable>
                 <Pressable style={styles.button} onPress={() => {_onPressButton()  }}>
                     <Text style={styles.text}>SUBMIT</Text>
+                </Pressable>  
+                <Pressable style={styles.button} onPress={() => {logout() }}>
+                    <Text style={styles.text}>LOGOUT</Text>
                 </Pressable>  
                 </Pressable>  
            <Text>{getErrorMessages()}</Text>

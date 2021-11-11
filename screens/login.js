@@ -1,56 +1,45 @@
-'use strict';
-import React, { useState } from 'react';
-import { View, Text, TextInput ,StyleSheet,Pressable } from 'react-native';
-import { useValidation } from 'react-native-form-validator';
+
+import React, { useState,useContext } from 'react';
+import { View, Text, TextInput ,StyleSheet,Pressable,Alert } from 'react-native';
+import { AuthContext } from '../navigation/AuthProvider';
 
 const Login = ({navigation}) => {
-    const [email, setEmail] = useState('');
-    const [newPassword, setNewPassword] = useState('');
-    const { validate, isFieldInError, getErrorsInField, getErrorMessages } =
-    useValidation({
-      state: {  email, newPassword },
-    });  
+    const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const {login} = useContext(AuthContext);
+ 
 
-    const _onPressButton = () => {
-        validate({
-          email: { email: true,required:true },
-          newPassword: {required:true},
-        });
-      };
       return (
         <View style={styles.container}>
-            <View style={styles.inputContainer}>
-            <TextInput
-                    style={styles.input}
-                    placeholder='Email address'
-                    value={email}
-                    onChangeText={setEmail}
-                    
-                />  
-                
+  <View style={styles.inputContainer}>
+    <TextInput
+      label={"Email"}
+      autoCapitalize={false}
+      keyboardType="email-address"
+      placeholder="Mail address"
+      onChangeText={(userEmail) => setEmail(userEmail)}
+    />
 
-            <TextInput
-                    style={styles.input}
-                    placeholder='Password'
-                    onChangeText={setNewPassword}
-                    value={newPassword}
-                    secureTextEntry={true}
-                /> 
-                  
-            <Pressable style={styles.button} onPress={() => {_onPressButton() }}>
-                    <Text style={styles.text}>Validate</Text>
-                </Pressable>
-                <Text>{getErrorMessages()}</Text>
-                <Pressable style={styles.button} onPress={() => navigation.navigate('signin')}>
-                    <Text style={styles.text}>SIGNUP</Text>
-                </Pressable>
-                <Pressable style={styles.button} onPress={() => navigation.navigate('bottomtabs')}>
-                    <Text style={styles.text}>Login</Text>
-                </Pressable>  
+    <TextInput
+      label={"Password"}
+      secureTextEntry
+      autoCapitalize={false}
+      placeholder="Password"
+      onChangeText={text => setPassword(text)}
+    />
+  </View>
 
-                
-                </View>
-        </View>
+        
+         <Pressable>
+            <Pressable style={styles.button} onPress={() => {login(email, password)}}>
+                <Text style={styles.text}>SIGNIN</Text>
+            </Pressable>  
+            <Pressable style={styles.button} onPress={() => navigation.navigate('signin')}>
+                <Text style={styles.text}>Dont hv acc signup</Text>
+            </Pressable>  
+
+            </Pressable>  
+            </View>
     );
 };
 const styles = StyleSheet.create({
@@ -89,6 +78,15 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         letterSpacing: 0.25,
         color: 'black',
+      },
+      errorLabelContainerStyle: {
+        flex: 0.1,
+        alignItems: "center",
+        justifyContent: "center"
+      },
+      errorTextStyle: {
+        color: "red",
+        textAlign: "center"
       },
 });
 export default Login;

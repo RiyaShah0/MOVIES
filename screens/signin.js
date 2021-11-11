@@ -1,64 +1,46 @@
-'use strict';
-import React, { useState } from 'react';
-import { View, Text, TextInput ,StyleSheet,Pressable } from 'react-native';
-import { useValidation } from 'react-native-form-validator';
+
+import React, { useState,useContext } from 'react';
+import { View, Text, TextInput ,StyleSheet,Pressable,Alert } from 'react-native';
+import auth, { firebase } from "@react-native-firebase/auth";
+import { AuthContext } from '../navigation/AuthProvider';
+
 
 const Signin = ({navigation}) => {
-    const [email, setEmail] = useState('');
-    const [newPassword, setNewPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const {register} = useContext(AuthContext);
 
-    const { validate, isFieldInError, getErrorsInField, getErrorMessages } =
-    useValidation({
-      state: {  email, newPassword, confirmPassword },
-    });
-
-    const _onPressButton = () => {
-        validate({
-          email: { email: true, required:true },
-          newPassword: {required:true},
-          confirmPassword: { equalPassword: newPassword,required:true },
-        });
-      };
 
     return (
+        
         <View style={styles.container}>
-            <View style={styles.inputContainer}>
-            <TextInput
-                    style={styles.input}
-                    placeholder='Email address'
-                    value={email}
-                    onChangeText={setEmail}
-                />  
-            <TextInput
-                    style={styles.input}
-                    placeholder='New Password'
-                    onChangeText={setNewPassword}
-                    value={newPassword}
-                    secureTextEntry={true}
-                /> 
-            <TextInput
-                     style={styles.input}
-                     placeholder='Confirm Password'
-                     onChangeText={setConfirmPassword}
-                     value={confirmPassword}
-                     secureTextEntry={true}
-            />
-         {isFieldInError('confirmPassword') &&
-         getErrorsInField('confirmPassword').map(errorMessage => (
-          <Text>{errorMessage}</Text>
-        ))} 
+      
+      <View style={styles.inputContainer}>
+        <TextInput
+          label={"Email"}
+          autoCapitalize={false}
+          keyboardType="email-address"
+          placeholder="Mail address"
+          onChangeText={text => {
+            setEmail(text)
+          }}
+        />
+
+        <TextInput
+          label={"Password"}
+          secureTextEntry
+          autoCapitalize={false}
+          placeholder="Password"
+          onChangeText={text => setPassword(text)}
+        />
+      </View>
+            
              <Pressable>
-                <Pressable style={styles.button} onPress={() => {_onPressButton() }}>
-                    <Text style={styles.text}>SIGNIN</Text>
-                </Pressable> 
-                <Pressable style={styles.button} onPress={() => {navigation.navigate('profile') }}>
-                    <Text style={styles.text}>VIEW PROFILE</Text>
+                <Pressable style={styles.button} onPress={() => {register(email, password)}}>
+                    <Text style={styles.text}>SIGNUP</Text>
                 </Pressable>  
                 </Pressable>  
-                <Text>{getErrorMessages()}</Text>
                 </View>
-        </View>
     );
 };
 const styles = StyleSheet.create({
@@ -97,6 +79,15 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         letterSpacing: 0.25,
         color: 'black',
+      },
+      errorLabelContainerStyle: {
+        flex: 0.1,
+        alignItems: "center",
+        justifyContent: "center"
+      },
+      errorTextStyle: {
+        color: "red",
+        textAlign: "center"
       },
 });
 export default Signin;
